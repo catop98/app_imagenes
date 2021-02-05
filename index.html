@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pagina principial</title>
+	<link rel="stylesheet" type="text/css" href="imagenes.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+
+	<script src="http://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+
+
+<header class="site-header">
+	<div class="contenedor contenido-header">
+         <div class="barra">
+			
+
+         <nav class="navegacion">
+         	  <a href="autor.html">Autor</a>
+         	  
+		      
+	     </nav>
+	
+         </div>
+          
+
+     </div>
+
+ </header>
+
+<section class="contenedor section">
+
+<div class="col-sm-12">
+
+						<div class="col-sm-12" id="imagePreview">
+							
+						</div>
+
+						<div class="col-sm-12">
+							<div class="form-group" style="background-color: #c8dadf;border-radius: 5px;padding-left: 50px;padding-bottom: 50px">
+								<br>												
+								<div class="col-sm-12">
+									<p style="text-align: center;"><b>Cargar Foto</b></p>						
+									<input type="file" class="form-control-file" id="imagedoc" name="imagedoc"  accept="image/*" >										
+								</div>
+							</div>
+						</div>
+							
+						</div>
+
+						<input id="btn_Agregar_Usuario" type="submit" name="submit" class="submit btn btn-success" value="Terminar" />
+
+
+</section>
+
+
+
+<script type="text/javascript">
+(function(){
+	function filePreview(input){
+		if (input.files && input.files[0]){
+			var reader = new FileReader();
+
+			reader.onload = function(e){
+				$('#imagePreview').html("<img src='"+e.target.result+"' />");
+			}
+
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+
+	$('#imagedoc').change(function(el){
+  if(LimitAttach(this,1))
+		  filePreview(this);
+	});
+})();
+</script>
+
+
+<script type="text/javascript">
+function LimitAttach(tField,iType) {
+	file=tField.value;
+	if (iType==1) {
+	extArray = new Array(".jpg");
+	}	
+	allowSubmit = false;
+	if (!file) return false;
+	while (file.indexOf("\\") != -1) file = file.slice(file.indexOf("\\") + 1);
+  ext = file.slice(file.indexOf(".")).toLowerCase();
+  for (var i = 0; i < extArray.length; i++) {
+    if (extArray[i] == ext) {
+      allowSubmit = true;
+      break;
+	}
+	}
+	if (allowSubmit) {
+  return true
+	} else {
+	tField.value="";
+	alert("Usted sólo puede subir archivos con extensiones " + (extArray.join("JPG ")) + "\n Reiniciando Formulario");
+return false;
+	setTimeout("location.reload()",2000);
+	}
+	}	
+</script>
+
+
+
+
+
+
+
+
+</body>
+</html>
